@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Matt Breden
-  description: Installs Nginx on Ubuntu
+  description: Installs Nginx on Ubuntu 16.04
   company: Acro Media Inc.
   license: MIT
 
@@ -9,7 +9,6 @@ galaxy_info:
   platforms:
   - name: Ubuntu
     versions:
-    - trusty
     - xenial
   galaxy_tags: []
 dependencies: []
