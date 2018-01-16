@@ -1,0 +1,10 @@
+- name: Install NGINX
+  apt: name=nginx  update_cache=yes state=present
+  
+- name: Ensure nginx is started.
+  service: name=nginx state=started
+
+- name: Increase value of server_names_hash_bucket_size
+  replace: dest=/etc/nginx/nginx.conf regexp='# server_names_hash_bucket_size \d+' replace='server_names_hash_bucket_size 128' # validate='/usr/sbin/nginx -tt'
+  notify:
+    - restart nginx
