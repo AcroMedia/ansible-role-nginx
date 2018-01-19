@@ -1,7 +1,7 @@
 nginx
 ======
 
-For setting up Nginx on an Ubuntu server.
+For setting up Nginx on an Ubuntu 14.04 or 16.04 server.
 
 
 Requirements

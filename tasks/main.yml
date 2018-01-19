@@ -1,6 +1,6 @@
-- name: Check if OS is Ubuntu 16.04
-  fail: msg="Server must be Ubuntu 16.04"
-  when: ansible_distribution != 'Ubuntu' or ansible_distribution_version != '16.04'
+- name: Check if OS is Ubuntu 14.04 or 16.04
+  fail: msg="Server must be Ubuntu 14.04 or 16.04"
+  when: ansible_distribution != 'Ubuntu' or (ansible_distribution_version != '14.04' and ansible_distribution_version != '16.04')
 
 - name: Install NGINX
   apt: name=nginx  update_cache=yes state=present
