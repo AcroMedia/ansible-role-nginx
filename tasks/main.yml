@@ -1,14 +1,39 @@
-- name: Check if OS is Ubuntu 14.04 or 16.04
-  fail: msg="Server must be Ubuntu 14.04 or 16.04"
-  when: ansible_distribution != 'Ubuntu' or (ansible_distribution_version != '14.04' and ansible_distribution_version != '16.04')
+- name: Check if OS is Ubuntu LTS "
+  fail: msg="Server must be Ubuntu LTS"
+  when: ansible_distribution != 'Ubuntu'
+    or (ansible_distribution_version != '14.04'
+      and ansible_distribution_version != '16.04'
+      and ansible_distribution_version != '18.04')
 
 - name: Install NGINX
-  apt: name=nginx  update_cache=yes state=present
-  
+  apt:
+    name: nginx
+    update_cache: yes
+    state: present
+
 - name: Ensure nginx is started.
-  service: name=nginx state=started
+  service:
+    name: nginx
+    state: started
 
 - name: Increase value of server_names_hash_bucket_size
-  replace: dest=/etc/nginx/nginx.conf regexp='# server_names_hash_bucket_size \d+' replace='server_names_hash_bucket_size 128' # validate='/usr/sbin/nginx -tt'
+  replace:
+    dest: /etc/nginx/nginx.conf
+    regexp: '# server_names_hash_bucket_size \d+'
+    replace: 'server_names_hash_bucket_size 128'
+    # validate='/usr/sbin/nginx -tt'
+  notify:
+    - restart nginx
+
+- name: Hide NGINX version
+  copy:
+    dest: /etc/nginx/conf.d/hide-nginx-version.conf
+    content: >
+      server_tokens off;
+    force: true
+    backup: true
+    mode: 0644
+    owner: root
+    group: root
   notify:
     - restart nginx
