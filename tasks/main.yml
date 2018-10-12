@@ -5,6 +5,11 @@
       and ansible_distribution_version != '16.04'
       and ansible_distribution_version != '18.04')
 
+- name: Add NGINX PPA so we can get a more recent version than with stock apt
+  apt_repository:
+    repo: ppa:nginx/stable
+    state: present
+
 - name: Install NGINX
   apt:
     name: nginx
@@ -23,7 +28,7 @@
     replace: 'server_names_hash_bucket_size 128'
     # validate='/usr/sbin/nginx -tt'
   notify:
-    - restart nginx
+    - reload nginx
 
 - name: Hide NGINX version
   copy:
@@ -36,4 +41,4 @@
     owner: root
     group: root
   notify:
-    - restart nginx
+    - reload nginx
