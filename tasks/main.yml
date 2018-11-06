@@ -42,3 +42,11 @@
     group: root
   notify:
     - reload nginx
+
+- name: Provide alternate nginx log format for use when running behind a load balancer
+  copy:
+    src: {{ role_path }}/files/etc/nginx/conf.d/log_format_proxied.conf
+    dest: /etc/nginx/conf.d/log_format_proxied.conf
+  notify: reload nginx
+  tags:
+    - nginx
