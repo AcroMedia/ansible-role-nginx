@@ -3,7 +3,7 @@ galaxy_info:
   author: Matt Breden
   description: Installs Nginx on Ubuntu 14.04 or 16.04
   company: Acro Media Inc.
-  license: MIT
+  license: AGPLv3
 
   min_ansible_version: 2.0
   platforms:
