@@ -1,37 +1,31 @@
-nginx
-======
+# ansible-role-nginx
 
-For setting up Nginx on an Ubuntu 14.04 or 16.04 server.
+Install and configure NGINX for acro hosting environments
 
 
-Requirements
-------------
-* Ubuntu
+## Requirements
 
-Role Variables
---------------
+* Ubuntu 14.04 +
+
+## Role Variables
 
 n/a
 
-Dependencies
-------------
+## Dependencies
 
 None
 
-Example Playbook
-----------------
+## Example Playbook
 
     - hosts: servers
       roles:
          - { role: acromedia.nginx }
 
-License
--------
+## License
 
-BSD
+AGPLv3
 
-Author Information
-------------------
+## Author Information
 
 Acro Media Inc.
 https://www.acromedia.com/
