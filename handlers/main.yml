@@ -1,6 +1,8 @@
 ---
 - name: restart nginx
-  service: name=nginx state=restarted
+  service:
+    name: nginx
+    state: restarted
 
-- name: reload nginx
-  service: name=nginx state=reloaded
+- name: safe reload nginx
+  shell: "/usr/sbin/nginx -t && {{ path_to_service_binary }} nginx reload"

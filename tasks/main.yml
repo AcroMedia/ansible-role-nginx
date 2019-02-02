@@ -1,34 +1,28 @@
-- name: Check if OS is Ubuntu LTS "
-  fail: msg="Server must be Ubuntu LTS"
-  when: ansible_distribution != 'Ubuntu'
-    or (ansible_distribution_version != '14.04'
-      and ansible_distribution_version != '16.04'
-      and ansible_distribution_version != '18.04')
+---
+- include_vars: "vars/{{ ansible_os_family }}.yml"
 
-- name: Add NGINX PPA so we can get a more recent version than with stock apt
-  apt_repository:
-    repo: ppa:nginx/stable
-    state: present
+- include_tasks: "tasks/{{ ansible_os_family }}.yml"
 
 - name: Install NGINX
-  apt:
+  package:
     name: nginx
     update_cache: yes
     state: present
 
-- name: Ensure nginx is started.
+- name: Ensure nginx is started and enabled on boot
   service:
     name: nginx
     state: started
+    enabled: true
 
+# @TODO: Stop writing to /etc/nginx/nginx.conf... This kind of thing should be put into conf.d files.
 - name: Increase value of server_names_hash_bucket_size
   replace:
     dest: /etc/nginx/nginx.conf
     regexp: '# server_names_hash_bucket_size \d+'
-    replace: 'server_names_hash_bucket_size 128'
-    # validate='/usr/sbin/nginx -tt'
+    replace: 'server_names_hash_bucket_size {{ nginx_server_names_hash_bucket_size }}'
   notify:
-    - reload nginx
+    - safe reload nginx
 
 - name: Hide NGINX version
   copy:
@@ -41,12 +35,10 @@
     owner: root
     group: root
   notify:
-    - reload nginx
+    - safe reload nginx
 
 - name: Provide alternate nginx log format for use when running behind a load balancer
   copy:
     src: "{{ role_path }}/files/etc/nginx/conf.d/log_format_proxied.conf"
     dest: /etc/nginx/conf.d/log_format_proxied.conf
-  notify: reload nginx
-  tags:
-    - nginx
+  notify: safe reload nginx

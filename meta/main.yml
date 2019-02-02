@@ -1,10 +1,9 @@
 ---
 galaxy_info:
   author: Matt Breden
-  description: Installs Nginx on Ubuntu 14.04 or 16.04
+  description: Install Nginx on Ubuntu or RedHat/CentOS
   company: Acro Media Inc.
-  license: AGPLv3
-
+  license: GPLv3
   min_ansible_version: 2.0
   platforms:
   - name: Ubuntu
@@ -12,5 +11,8 @@ galaxy_info:
     - trusty
     - xenial
     - bionic
+  - name: EL
+    versions:
+      - 6
   galaxy_tags: []
 dependencies: []

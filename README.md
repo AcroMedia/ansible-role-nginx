@@ -5,25 +5,31 @@ Install and configure NGINX for acro hosting environments
 
 ## Requirements
 
-* Ubuntu 14.04 +
+* Ubuntu 14.04+ or RedHat/CentOS 6+
+* Your playbook must gather facts
 
 ## Role Variables
 
-n/a
+See defaults/main.yml
 
 ## Dependencies
 
 None
 
 ## Example Playbook
-
-    - hosts: servers
-      roles:
-         - { role: acromedia.nginx }
+```yaml
+---
+- hosts: servers
+  become: true
+  gather_facts: true
+  roles:
+    - name: Install NGINX
+      role: acromedia.nginx
+```
 
 ## License
 
-AGPLv3
+GPLv3
 
 ## Author Information
 
