@@ -1,0 +1,26 @@
+# {{ ansible_managed }}
+# See https://github.com/AcroMedia/ansible-role-nginx/blob/master/templates/etc/nginx/includes/robots.txt.j2
+
+{% if nginx_robots_policy == 'production' %}
+
+location = /robots.txt {
+  allow all;
+  log_not_found off;
+  access_log off;
+}
+
+{% elif nginx_robots_policy == 'staging' or nginx_robots_policy == 'development' %}
+
+location = /robots.txt {
+  allow all;
+  log_not_found off;
+  access_log off;
+  add_header Content-Type text/plain;
+  return 200 "User-agent: *\nDisallow: /\n";
+}
+
+{% else %}
+
+## Value for `nginx_robots_policy` was undefined or invalid in your playbook. Not creating a `location = /robots.txt {}` entry.
+
+{% endif %}

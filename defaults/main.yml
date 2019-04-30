@@ -1,2 +1,3 @@
 ---
 nginx_server_names_hash_bucket_size: 128
+nginx_robots_policy: ''
