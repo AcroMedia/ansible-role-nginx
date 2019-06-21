@@ -1,0 +1,6 @@
+# {{ ansible_managed }}
+# Role: acromedia.nginx
+# Source: https://github.com:AcroMedia/ansible-role-nginx/blob/master/templates/etc/nginx/conf.d/gzip_types.conf.j2
+{% if nginx_gzip_types|length > 0 %}
+gzip_types {% for gzip_type in nginx_gzip_types %} {{ gzip_type }}{% endfor %};
+{% endif %}

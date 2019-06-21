@@ -1,3 +1,12 @@
 ---
 nginx_server_names_hash_bucket_size: 128
 nginx_robots_policy: ''
+nginx_gzip_types:
+  - text/plain
+  - text/css
+  - application/json
+  - application/javascript
+  - text/xml
+  - application/xml
+  - application/xml+rss
+  - text/javascript

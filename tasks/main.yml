@@ -53,3 +53,14 @@
   when: nginx_robots_policy is defined
     and nginx_robots_policy in ['development', 'staging', 'production']
   ignore_errors: true
+
+- name: Enable gzip compression on more than just text/html type
+  template:
+    src: "etc/nginx/conf.d/gzip_types.conf.j2"
+    dest: /etc/nginx/conf.d/gzip_types.conf
+    owner: root
+    group: root
+    mode: '0644'
+    backup: true
+  notify:
+    - safe reload nginx
