@@ -19,6 +19,6 @@
 - name: Deny anonymous access to all nginx sites
   template:
     src: "{{ role_path }}/templates/etc/nginx/conf.d/deny-anonymous.conf.j2"
-    dest: /etc/nginx/conf.d/deny-anonymous.conf
+    dest: "{{ nginx_deny_anonymous_conf_path }}"
     backup: false
   notify: safe reload nginx

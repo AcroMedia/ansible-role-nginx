@@ -65,9 +65,9 @@
   notify:
     - safe reload nginx
 
-- name: Remove /etc/nginx/conf.d/deny-anonymous.conf when it's not being used.
+- name: "Remove {{ nginx_deny_anonymous_conf_path }} when it's not being used."
   file:
-    path: /etc/nginx/conf.d/deny-anonymous.conf
+    path: "{{ nginx_deny_anonymous_conf_path }}"
     state: absent
   notify: safe reload nginx
   when: nginx_global_username == ''

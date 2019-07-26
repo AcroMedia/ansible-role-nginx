@@ -15,4 +15,5 @@ nginx_gzip_types:
 nginx_global_username: ''
 nginx_global_password: ''
 nginx_auth_basic_db_path: /var/lib/nginx/htpasswd
+nginx_deny_anonymous_conf_path: /etc/nginx/conf.d/deny-anonymous.conf
 nginx_auth_basic_realm: "No anonymous access allowed"
