@@ -1,0 +1,5 @@
+# {{ ansible_managed }}
+# Keep search engines out of all sites on the server.
+# To disable for a specific site or location block, add "auth_basic off;" to your config.
+auth_basic "{{ nginx_auth_basic_realm }}";
+auth_basic_user_file {{ nginx_auth_basic_db_path }};

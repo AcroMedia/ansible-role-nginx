@@ -64,3 +64,8 @@
     backup: true
   notify:
     - safe reload nginx
+
+- include_tasks: "{{ role_path }}/tasks/auth_basic.yml"
+  when: nginx_global_username != ''
+  tags:
+    - nginx_auth_basic

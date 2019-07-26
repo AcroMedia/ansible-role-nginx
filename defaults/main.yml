@@ -10,3 +10,9 @@ nginx_gzip_types:
   - application/xml
   - application/xml+rss
   - text/javascript
+
+# For putting UAT / staging servers behind a server-wide password prompt.
+nginx_global_username: ''
+nginx_global_password: ''
+nginx_auth_basic_db_path: /var/lib/nginx/htpasswd
+nginx_auth_basic_realm: "No anonymous access allowed"

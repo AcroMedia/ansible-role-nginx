@@ -1,0 +1,24 @@
+---
+- name: Install dependency for htpasswd operations
+  apt:
+    name: python-passlib
+    state: present
+    update_cache: true
+
+- name: Create htpasswd file
+  htpasswd:
+    path: "{{ nginx_auth_basic_db_path }}"
+    name: "{{ nginx_global_username }}"
+    password: "{{ nginx_global_password }}"
+    owner: "{{ nginx_process_owner }}"
+    group: root
+    mode: '0600'
+  notify:
+    - safe reload nginx
+
+- name: Deny anonymous access to all nginx sites
+  template:
+    src: "{{ role_path }}/templates/etc/nginx/conf.d/deny-anonymous.conf.j2"
+    dest: /etc/nginx/conf.d/deny-anonymous.conf
+    backup: false
+  notify: safe reload nginx
