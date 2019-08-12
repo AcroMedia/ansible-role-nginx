@@ -5,7 +5,7 @@
     state: present
     update_cache: true
 
-- name: Create htpasswd file
+- name: Ensure user exists in htpasswd file
   htpasswd:
     path: "{{ nginx_auth_basic_db_path }}"
     name: "{{ nginx_global_username }}"
@@ -15,6 +15,7 @@
     mode: '0600'
   notify:
     - safe reload nginx
+  when: not ansible_check_mode
 
 - name: Deny anonymous access to all nginx sites
   template:
