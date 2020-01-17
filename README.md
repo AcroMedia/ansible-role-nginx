@@ -25,7 +25,7 @@ __MOLECULE_DISTRO List__
 
 - look here for more images: https://hub.docker.com/r/geerlingguy/
     
-### Developement
+### Development
 
 - if you are creating a new molecule test suite inside an existing role then execute this ...
 ```bash 
