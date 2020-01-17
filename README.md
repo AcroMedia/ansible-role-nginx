@@ -22,6 +22,9 @@ __MOLECULE_DISTRO List__
     debian8
     debian9
     debian10
+    
+    ubuntu1604
+    ubuntu1804
 
 - look here for more images: https://hub.docker.com/r/geerlingguy/
     
