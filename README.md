@@ -3,7 +3,15 @@
 Install and configure NGINX for acro hosting environments
 
 # Test Suite Setup (Molecule)
+
+- To run the whole test suite for all environments
+```bash
+$ tox
+```
+
 ## Setup Local Virtual Environment
+
+- to run a single test
 ```bash
 $ python3 -m venv venv
 $ source venv/bin/activate
@@ -54,7 +62,7 @@ $ molecule login
 
 - run the test suite located in ```molecule/test/test_default.py```
 ```bash
-$ molecule login
+$ molecule verify
 ```
 
 # General Playbook Details
@@ -77,6 +85,7 @@ $ molecule login
 None
 
 ## Example Playbook
+
 ```yaml
 ---
 - hosts: servers

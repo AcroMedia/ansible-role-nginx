@@ -1,7 +1,8 @@
 .env
 /venv/
 /dist/
-*/__pycache__/*
+*/__pycache__
+*.pyc
 molecule/default/tests/__pycache__/
 .vscode
 *.egg*
