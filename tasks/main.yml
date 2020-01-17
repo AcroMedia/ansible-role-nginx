@@ -1,7 +1,9 @@
 ---
-- include_vars: "vars/{{ ansible_os_family }}.yml"
+- name: Include OS-specific variables.
+  include_vars: "vars/{{ ansible_os_family }}.yml"
 
-- include_tasks: "tasks/{{ ansible_os_family }}.yml"
+- name: Include OS-specific tasks.
+  include_tasks: "tasks/{{ ansible_os_family }}.yml"
 
 - name: Install NGINX
   package:

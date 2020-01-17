@@ -1,1 +1,11 @@
+.env
+/venv/
+/dist/
+*/__pycache__/
+.vscode
+*.egg*
 .idea
+.cache
+/env/
+/.tox
+.pytest_cache
