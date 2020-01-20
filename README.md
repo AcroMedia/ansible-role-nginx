@@ -24,8 +24,8 @@ $ MOLECULE_DISTRO=centos7 molecule test
 
 __MOLECULE_DISTRO List__
 
-    centos6
     centos7
+    centos8
     
     debian8
     debian9
