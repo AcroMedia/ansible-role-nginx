@@ -48,15 +48,3 @@ def test_nginx_conf_file(host, files):
     [check_file(host.file(x), 'root', 'root', '0o644') for x in test_files]
     # contents = "server_names_hash_bucket_size {}".format(128)
     # assert conf.contains(contents) # doesn't seem to write this ...
-
-
-""" auth_basic/main.yml tests """
-
-
-@pytest.mark.parametrize('parameters', [
-    'var/lib/nginx/htpasswd', 'nginx', '0o600'
-])
-def user_exists_in_htpasswd(host, parameters):
-
-    test_cases = [parameters]
-    check_file(host.file(test_cases[0]), test_cases[1], 'root', test_cases[2])
