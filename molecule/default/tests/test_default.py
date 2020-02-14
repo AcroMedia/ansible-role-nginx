@@ -45,6 +45,6 @@ def test_svc(host, services):
 def test_nginx_conf_file(host, files):
 
     test_files = [files]
-    [check_file(host.file(x), 'root', 'root', '0644') for x in test_files]
+    [check_file(host.file(x), 'root', 'root', '0o644') for x in test_files]
     # contents = "server_names_hash_bucket_size {}".format(128)
     # assert conf.contains(contents) # doesn't seem to write this ...
