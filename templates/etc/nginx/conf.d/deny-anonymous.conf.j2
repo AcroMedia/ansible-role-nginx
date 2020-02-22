@@ -1,5 +1,12 @@
 # {{ ansible_managed }}
-# Keep search engines out of all sites on the server.
-# To disable for a specific site or location block, add "auth_basic off;" to your config.
-auth_basic "{{ nginx_auth_basic_realm }}";
+# Require basic auth to keep snoopy search engines out of all sites on the server,
+# adding an exception map so we don't block requests originating from localhost. We want our cron cURL jobs to still work.
+# To disable basic auth for a specific site or location block, add "auth_basic off;" to your config.
+
+map $remote_addr $auth_basic_flag {
+  "127.0.0.1" "off";
+  default "{{ nginx_auth_basic_realm }}";
+}
+
+auth_basic $auth_basic_flag;
 auth_basic_user_file {{ nginx_auth_basic_db_path }};
