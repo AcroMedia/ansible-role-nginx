@@ -37,11 +37,15 @@
   notify:
     - safe reload nginx
 
-- name: Provide alternate nginx log format for use when running behind a load balancer
+- name: Provide additional log formats
   copy:
-    src: "{{ role_path }}/files/etc/nginx/conf.d/log_format_proxied.conf"
-    dest: /etc/nginx/conf.d/log_format_proxied.conf
+    src: "{{ role_path }}/files{{ item }}"
+    dest: "{{ item }}"
   notify: safe reload nginx
+  with_items:
+    - /etc/nginx/conf.d/log_format_combined_plus.conf
+    - /etc/nginx/conf.d/log_format_proxied.conf
+
 
 - name: Configure /etc/nginx/includes/robots.conf
   template:
