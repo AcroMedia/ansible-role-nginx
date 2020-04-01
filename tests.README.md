@@ -1,9 +1,13 @@
-# Testing with Molecule
+# Testing with Molecule 2
 
 ## Quick start with default test scenario
 ```bash
-pip install molecule
-molecule test
+sudo apt-get install python3-venv
+python3 -m venv venv
+source venv/bin/activate
+pip3 install 'molecule[docker]'
+pip3 install -r requirements.txt
+MOLECULE_DISTRO=ubuntu1804 molecule test
 ```
 
 ## Testing all distro variations with Tox
@@ -23,6 +27,7 @@ tox
 
 - to run a single test
 ```bash
+sudo apt-get install python3-venv
 python3 -m venv venv
 source venv/bin/activate
 pip3 install 'molecule[docker]'
