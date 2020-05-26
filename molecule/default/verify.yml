@@ -1,6 +1,5 @@
 ---
-tasks:
-  - name: Check that nginx file has been created
-    stat:
-      path: /etc/nginx
-    register: stat_result
+- name: Check that nginx file has been created
+  stat:
+    path: /etc/nginx
+  register: stat_result
