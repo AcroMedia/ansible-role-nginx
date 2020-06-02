@@ -1,0 +1,5 @@
+# pip requirements for testing
+testinfra==3.4.0
+pytest==5.3.2
+docker==3.4.1
+molecule==2.22

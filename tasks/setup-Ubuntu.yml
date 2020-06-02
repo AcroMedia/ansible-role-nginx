@@ -1,0 +1,5 @@
+---
+
+- name: Ensure nginx will reinstall if the PPA was just added.
+  apt_repository:
+    repo: 'ppa:nginx/stable'

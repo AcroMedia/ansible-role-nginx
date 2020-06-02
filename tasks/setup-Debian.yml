@@ -1,4 +1,5 @@
+---
 - name: Add NGINX PPA so we can get a more recent version than with stock apt
   apt_repository:
-    repo: ppa:nginx/stable
-    state: present
+    repo: 'ppa:nginx/stable'
+    codename: trusty

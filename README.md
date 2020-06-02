@@ -2,7 +2,6 @@
 
 Install and configure NGINX for acro hosting environments
 
-
 ## Requirements
 
 * Ubuntu 14.04+ or RedHat/CentOS 6+
@@ -21,6 +20,7 @@ Install and configure NGINX for acro hosting environments
 None
 
 ## Example Playbook
+
 ```yaml
 ---
 - hosts: servers
@@ -32,6 +32,10 @@ None
       vars:
         nginx_robots_policy: production
 ```
+
+## Testing with Molecule
+
+See [tests.README.md](./tests.README.md)
 
 ## License
 
