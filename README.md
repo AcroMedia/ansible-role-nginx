@@ -1,4 +1,5 @@
 # ansible-role-nginx
+[![Build Status](https://travis-ci.com/Chithrak07/ansible-role-nginx.svg?branch=configure-travis-ci)](https://travis-ci.com/github/Chithrak07/ansible-role-nginx)
 
 Install and configure NGINX for acro hosting environments
 
