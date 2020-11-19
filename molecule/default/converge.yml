@@ -1,5 +1,15 @@
 ---
 - name: Converge
   hosts: all
+  pre_tasks:
+
+    - name: Update apt cache.
+      apt: update_cache=true cache_valid_time=600
+      changed_when: false
+
+    - name: Ensure dirmngr is installed (gnupg dependency).
+      apt:
+        name: dirmngr
+        state: present
   roles:
     - role: ansible-role-nginx
