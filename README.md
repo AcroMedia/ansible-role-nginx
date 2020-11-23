@@ -1,5 +1,6 @@
 # ansible-role-nginx
-[![Build Status](https://travis-ci.com/Chithrak07/ansible-role-nginx.svg?branch=configure-travis-ci)](https://travis-ci.com/github/Chithrak07/ansible-role-nginx)
+
+![.github/workflows/molecule.yml](https://github.com/AcroMedia/ansible-role-nginx/workflows/.github/workflows/molecule.yml/badge.svg)
 
 Install and configure NGINX for acro hosting environments
 
