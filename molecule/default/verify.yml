@@ -15,8 +15,8 @@
     register: stat_result
 
   - name: check if nginx has port 80 open
-    shell: netstat -tunlp | grep ":80 " | sed -e 's/.*\///'
+    shell: ss -tp state listening sport = :80 | grep 'nginx'
     register: results
 
-  - name: See what netstat returned
+  - name: See service returned
     debug: var=results
