@@ -11,5 +11,6 @@
       apt:
         name: dirmngr
         state: present
+      when: ansible_os_family == 'Debian'
   roles:
     - role: ansible-role-nginx

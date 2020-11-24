@@ -13,3 +13,10 @@
     stat:
       path: /etc/nginx/conf.d/log_format_proxied.conf
     register: stat_result
+
+  - name: check if nginx has port 80 open
+    shell: netstat -tunlp | grep ":80 " | sed -e 's/.*\///'
+    register: results
+
+  - name: See what netstat returned
+    debug: var=results
