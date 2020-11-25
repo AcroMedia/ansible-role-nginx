@@ -13,3 +13,10 @@
     stat:
       path: /etc/nginx/conf.d/log_format_proxied.conf
     register: stat_result
+
+  - name: check if nginx has port 80 open
+    shell: ss -tp state listening sport = :80 | grep 'nginx'
+    register: results
+
+  - name: See service returned
+    debug: var=results
