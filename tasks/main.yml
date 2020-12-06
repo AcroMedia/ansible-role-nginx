@@ -55,6 +55,13 @@
     - /etc/nginx/conf.d/log_format_combined_plus.conf
     - /etc/nginx/conf.d/log_format_proxied.conf
 
+- name: Ensure includes dir exists
+  file:
+    state: directory
+    dest: /etc/nginx/includes
+    owner: root
+    group: root
+    mode: '0755'
 
 - name: Configure /etc/nginx/includes/robots.conf
   template:
