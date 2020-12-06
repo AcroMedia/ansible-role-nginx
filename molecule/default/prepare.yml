@@ -1,0 +1,22 @@
+---
+- name: Prepare
+  hosts: all
+  become: true
+  gather_facts: true
+  tasks:
+    
+    - name: Initialze apt cache
+      apt:
+        update_cache: true
+      when: ansible_os_family == 'Debian'
+
+    - name: Ensure dirmngr is installed (gnupg dependency).
+      apt:
+        name: dirmngr
+        state: present
+      when: ansible_os_family == 'Debian'
+
+    - name: Initialze yum cache
+      yum:
+        update_cache: true
+      when: ansible_os_family == 'RedHat'
