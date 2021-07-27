@@ -1,0 +1,11 @@
+# {{ ansible_managed }}
+
+# For use behind load balancers, or anything that forwards an "X-Forwarded-For" header.
+# Also logs the scheme (http/https) and server_name that was used.
+
+log_format proxied {{ nginx_log_format_proxied_definition }};
+
+
+# Here's the same format, but with a stupid long name ... only here for legacy purposes.
+
+log_format log_format_proxied {{ nginx_log_format_proxied_definition }};

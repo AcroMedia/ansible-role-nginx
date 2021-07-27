@@ -1,0 +1,6 @@
+# {{ ansible_managed }}
+
+# Add scheme (http/https) and server_name to the standard "combined" format.
+# Helps debugging on servers that have multiple server_names.
+
+log_format combined_plus {{ nginx_log_format_combined_plus_definition }};
