@@ -47,8 +47,8 @@
     - safe reload nginx
 
 - name: Provide additional log formats
-  copy:
-    src: "{{ role_path }}/files{{ item }}"
+  template:
+    src: "{{ role_path }}/templates{{ item }}.j2"
     dest: "{{ item }}"
   notify: safe reload nginx
   with_items:
