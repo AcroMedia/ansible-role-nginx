@@ -1,7 +1,7 @@
 ---
 - name: Install dependency for htpasswd operations
   apt:
-    name: python-passlib
+    name: python3-passlib
     state: present
     update_cache: true
 
