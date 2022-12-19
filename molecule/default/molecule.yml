@@ -6,7 +6,7 @@ driver:
 platforms:
   - name: instance
     image: ${MOLECULE_DOCKER_IMAGE:-'geerlingguy/docker-ubuntu1804-ansible:latest'}
-    command: ${MOLECULE_DOCKER_COMMAND:-""}
+    command: ${MOLECULE_DOCKER_COMMAND:-"molecule destroy"}
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     privileged: true
