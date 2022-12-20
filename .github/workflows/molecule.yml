@@ -13,11 +13,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           path: "${{ github.repository }}"
       - name: molecule
-        uses: robertdebock/molecule-action@2.6.3
+        uses: robertdebock/molecule-action@4.0.9
         with:
           command: lint
   test:
@@ -34,11 +34,11 @@ jobs:
           - geerlingguy/docker-centos7-ansible:latest
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           path: "${{ github.repository }}"
       - name: molecule
-        uses: robertdebock/molecule-action@2.6.3
+        uses: robertdebock/molecule-action@4.0.9
         with:
           image: "${{ matrix.image }}"
           options: parallel
