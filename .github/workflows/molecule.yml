@@ -10,7 +10,7 @@ on:
       - master
 jobs:
   lint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -23,7 +23,7 @@ jobs:
   test:
     needs:
       - lint
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     strategy:
       matrix:
         image:
