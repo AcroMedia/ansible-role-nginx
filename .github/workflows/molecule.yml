@@ -44,3 +44,4 @@ jobs:
           options: parallel
         env:
           MOLECULE_DOCKER_IMAGE: "${{ matrix.image }}"
+          ANSIBLE_REMOTE_TEMP: /tmp
