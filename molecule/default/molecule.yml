@@ -6,18 +6,23 @@ driver:
   name: docker
 platforms:
   - name: instance
-    image: ${MOLECULE_DOCKER_IMAGE:-'geerlingguy/docker-ubuntu1804-ansible:latest'}
-    # command: ${MOLECULE_DOCKER_COMMAND:-""} # See https://github.com/geerlingguy/docker-fedora35-ansible/issues/1
-    command: "/sbin/init"
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:rw
-      - /var/lib/containerd
-    cgroupns_mode: host
+    image: "registry.gitlab.com/aussielunix/ansible/molecule-containers/${MOLECULE_DISTRO:-ubuntu:jammy}"
+#    command: ${MOLECULE_DOCKER_COMMAND:-"/lib/systemd/systemd"}  # See https://github.com/geerlingguy/docker-fedora35-ansible/issues/1
+#    volumes:
+#      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+#      - /var/lib/containerd
+#    cgroupns_mode: host
     privileged: true
     pre_build_image: true
+    override_command: false
+    tmpfs:
+      - /run
+      - /tmp
 provisioner:
   name: ansible
   playbooks:
     converge: ${MOLECULE_PLAYBOOK:-converge.yml}
+  env:
+      ANSIBLE_VERBOSITY: ${MOLECULE_ANSIBLE_VERBOSITY:-0}
 verifier:
   name: ansible
