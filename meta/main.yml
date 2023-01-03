@@ -12,6 +12,7 @@ galaxy_info:
     versions:
       - jammy
       - focal
+      - xenial
   - name: EL
     versions: []
   galaxy_tags: []
