@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Matt Breden
-  description: Install Nginx on Ubuntu or RedHat/CentOS
+  description: Install NGINX on Ubuntu
   company: Acro Media Inc.
   license: GPLv3
   min_ansible_version: 2.0
@@ -10,11 +10,9 @@ galaxy_info:
   platforms:
   - name: Ubuntu
     versions:
-    - trusty
-    - xenial
-    - bionic
+      - jammy
+      - focal
   - name: EL
-    versions:
-      - 6
+    versions: []
   galaxy_tags: []
 dependencies: []
