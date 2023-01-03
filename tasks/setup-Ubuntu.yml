@@ -1,13 +1,15 @@
 ---
-
-- name: Ensure nginx will reinstall if the PPA was just added.
+- name: Add external PPA so we can get newer nginx version than what comes stock.
+    This was only really necessary on older Ubuntu versions (e.g. trusty and xenial).
+    Current ubuntu versions ship with a feature-complete nginx.
   apt_repository:
     repo: 'ppa:nginx/stable'
+    codename: '{{ ansible_distribution_release }}'
   when: ansible_distribution_version < '22.04'
+  register: nginx_ppa_add_result
 
-- name: Ensure nginx will reinstall if the PPA was just added.
+- name: Refresh apt cache after adding PPA
   apt:
-    name: nginx
-    state: present
     update_cache: true
-  when: ansible_distribution_version >= '22.04'
+  when: nginx_ppa_add_result is defined
+    and nginx_ppa_add_result.changed
