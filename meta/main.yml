@@ -1,7 +1,7 @@
 ---
 galaxy_info:
-  author: Matt Breden
-  description: Install NGINX on Ubuntu
+  author: Matt Breden, Dale Anderson, Chithra K
+  description: Install NGINX on Ubuntu or Red Hat
   company: Acro Media Inc.
   license: GPLv3
   min_ansible_version: 2.0
@@ -10,10 +10,12 @@ galaxy_info:
   platforms:
   - name: Ubuntu
     versions:
-      - jammy
-      - focal
-      - bionic
-  - name: EL
-    versions: []
+      - jammy   # 22.04
+      - focal   # 20.04
+      - bionic   # 18.04
+  - name: EL   # Or CentOS, or Rocky
+    versions:
+      - 8
+      - 9
   galaxy_tags: []
 dependencies: []

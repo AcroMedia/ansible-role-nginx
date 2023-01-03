@@ -6,7 +6,7 @@ Install and configure NGINX for acro hosting environments
 
 ## Requirements
 
-* Ubuntu 18.04+
+* Ubuntu 18.04+ or CentOS/Red Hat/Rocky Linux 8+
 * Your playbook must gather facts
 
 ## Role Variables
