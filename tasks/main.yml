@@ -30,6 +30,18 @@
   notify:
     - safe reload nginx
 
+# Ubuntu 26.04's stock nginx.conf ships an ACTIVE `server_tokens build;` line;
+# a second server_tokens in http context (our conf.d file below) is then an
+# [emerg] duplicate. Comment the stock line out so the conf.d file stays the
+# single authority. No-op on releases where the stock line is already a comment.
+- name: Neutralize the distribution's own server_tokens directive
+  replace:
+    dest: /etc/nginx/nginx.conf
+    regexp: '^(\s*)server_tokens(\s+.*)$'
+    replace: '\1# server_tokens\2'
+  notify:
+    - safe reload nginx
+
 - name: Hide NGINX version
   copy:
     dest: /etc/nginx/conf.d/hide-nginx-version.conf
