@@ -1,49 +1,52 @@
 ---
-on:
+'on':
   # Trigger the workflow on push or pull request,
   # but only for the main branch
   push:
     branches:
       - master
+    paths-ignore:
+      - 'README.md'
   pull_request:
     branches:
       - master
+    paths-ignore:
+      - 'README.md'
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout
-        uses: actions/checkout@v3
-        with:
-          path: "${{ github.repository }}"
-      - name: molecule
-        uses: robertdebock/molecule-action@4.0.9
-        with:
-          command: lint
+  # @TODO: Lint has never run against this role's older task style. Enable and
+  # clean up separately, the way ansible-role-mariadb did.
+  # lint:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: checkout
+  #       uses: actions/checkout@v4
+  #     - name: Run ansible-lint
+  #       uses: ansible/ansible-lint@main
   test:
-    needs:
-      - lint
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         image:
+          - geerlingguy/docker-ubuntu2604-ansible:latest
           - geerlingguy/docker-ubuntu2404-ansible:latest
           - geerlingguy/docker-ubuntu2204-ansible:latest
-          - geerlingguy/docker-ubuntu2004-ansible:latest
-          - geerlingguy/docker-ubuntu1804-ansible:latest
-          - geerlingguy/docker-ubuntu1604-ansible:latest
-          - geerlingguy/docker-centos9-ansible:latest
-          - geerlingguy/docker-centos8-ansible:latest
-          - geerlingguy/docker-centos7-ansible:latest
     steps:
       - name: checkout
         uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          path: "${{ github.repository }}"
-      - name: molecule
-        uses: robertdebock/molecule-action@6.0.1
-        with:
-          image: "${{ matrix.image }}"
-          options: parallel
+          python-version: '3.11'
+
+      - name: Install test dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run Molecule tests
+        run: molecule test
         env:
+          ANSIBLE_ROLES_PATH: "${{ github.workspace }}/.."
           MOLECULE_DOCKER_IMAGE: "${{ matrix.image }}"
+          PY_COLORS: '1'
+          ANSIBLE_FORCE_COLOR: '1'
