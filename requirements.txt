@@ -1,2 +1,3 @@
 # pip requirements for testing
-molecule[docker]
+molecule
+molecule-plugins[docker]
